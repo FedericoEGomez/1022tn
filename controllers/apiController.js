@@ -4,6 +4,7 @@ const {SmartPhone} = require('../models/celulares')
 const apiController = {
     async info (req, res) {
         const list = await SmartPhone.find();
+        console.log(list)
         res.status(200).json(list)
     },
     async buscarPorId (req, res) {
@@ -24,8 +25,10 @@ const apiController = {
        try {
             const newSmartPhone = new SmartPhone(req.body);
             await newSmartPhone.save();
+            console.log({msg:'save new smartphone', newSmartPhone})
             res.status(201).json(newSmartPhone)
        } catch (error) {
+            console.log(error)
             res.status(400).json(error)
        }
     },
